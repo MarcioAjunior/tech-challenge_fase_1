@@ -1,11 +1,12 @@
 from fastapi import FastAPI, HTTPException, Response, Depends
-from fastapi.security import OAuth2PasswordBearer
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from fastapi.exceptions import RequestValidationError
+from typing import Annotated
 
 from models import (
     UserRegister, UserRegisterResponse, UserLogin, UserLoginResponse,
     ProductionRequest, ProcessingRequest, ComercializationRequest,
-    ImportationRequest, ExportationRequest
+    ImportationRequest, ExportationRequest, ProductionParams, Token
 )
 from models.docs import (
     docs_register, docs_login, docs_production,
@@ -27,15 +28,24 @@ async def register_user(user: UserRegister, response: Response):
     response.status_code = 201
     return {"detail": user}
 
-@app.post('/login', status_code=200, responses=docs_login)
-async def login_user(user: UserLogin):
+@app.post('/token', status_code=200, responses=docs_login)
+async def login_user(form_data: Annotated[OAuth2PasswordRequestForm, Depends()]) -> Token:
+    user = UserLogin(username=form_data.username, password=form_data.password)
     user = user.verify_credentials()
+    
     if not isinstance(user, UserLoginResponse):
-        raise HTTPException(status_code=user[0], detail=user[1])
-    return {"detail": user}
-
-@app.get('/production', responses=docs_production)
-async def get_production(production: ProductionRequest, token: str = Depends(verify_token)):
+        raise HTTPException(status_code=404, detail='email ou senha inválidos')
+    
+    return Token(access_token=user.token, token_type='bearer')
+    
+@app.get('/production/', responses=docs_production)
+async def get_production(
+        params: ProductionParams = Depends(),
+        token: str = Depends(verify_token)
+        ):
+    
+    production = ProductionRequest(year=params.year)
+    
     need_scraping = production.verify_need_scraping()
     if need_scraping:
         production.scraping()

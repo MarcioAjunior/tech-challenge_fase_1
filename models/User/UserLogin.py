@@ -12,8 +12,8 @@ class UserLoginResponse(BaseModel):
     token : str
 
 class UserLogin(BaseModel):
-    email : str = Field(min_length=5, max_length=20)
-    password : str =  Field(min_length=5, max_length=20)
+    username : str = None
+    password : str =  None
     
     @staticmethod
     def dencript_pass(password, hashed_password):
@@ -28,7 +28,7 @@ class UserLogin(BaseModel):
     def verify_credentials(self):        
         with SQLAlchemyManager() as session:
             try:
-                user = session.query(LBUser).filter_by(email=self.email).first()
+                user = session.query(LBUser).filter_by(email=self.username).first()
                 if not user:
                     return (404, ERRORS.get(404))     
                 success_login = UserLogin.dencript_pass(self.password, user.password)

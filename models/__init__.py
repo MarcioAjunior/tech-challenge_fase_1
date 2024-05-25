@@ -5,3 +5,6 @@ from .Processing.ProcessingRequest import ProcessingRequest
 from .Comercialization.ComercializationRequest import ComercializationRequest
 from .Importation.ImportationRequest import ImportationRequest
 from .Exportation.ExportationRequest import ExportationRequest
+from .Token.Token import Token
+
+from .Production.ProductionParams import ProductionParams
