@@ -1,0 +1,13 @@
+/venv
+/api/__pycache__
+/helpers/__pycache__
+/models/__pycache__
+/models/Comercialization/__pycache__
+/models/docs/__pycache__
+/models/Exportation/__pycache__
+/models/Importation/__pycache__
+/models/Processing/__pycache__
+/models/Production/__pycache__
+/models/User/__pycache__
+/models/Scraping/__pycache__
+/utils/__pycache__
