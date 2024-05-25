@@ -32,20 +32,13 @@ async def register_user(user: UserRegister, response: Response):
 async def login_user(form_data: Annotated[OAuth2PasswordRequestForm, Depends()]) -> Token:
     user = UserLogin(username=form_data.username, password=form_data.password)
     user = user.verify_credentials()
-    
     if not isinstance(user, UserLoginResponse):
         raise HTTPException(status_code=user[0], detail=user[1])
-    
     return Token(access_token=user.token, token_type='bearer')
     
 @app.get('/production/', responses=docs_production)
-async def get_production(
-        params: ProductionParams = Depends(),
-        token: str = Depends(verify_token)
-        ):
-    
+async def get_production(params: ProductionParams = Depends(), token: str = Depends(verify_token)):
     production = ProductionRequest(year=params.year)
-    
     need_scraping = production.verify_need_scraping()
     if need_scraping:
         production.scraping()
