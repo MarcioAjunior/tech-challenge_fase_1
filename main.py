@@ -34,7 +34,7 @@ async def login_user(form_data: Annotated[OAuth2PasswordRequestForm, Depends()])
     user = user.verify_credentials()
     
     if not isinstance(user, UserLoginResponse):
-        raise HTTPException(status_code=404, detail='email ou senha inválidos')
+        raise HTTPException(status_code=user[0], detail=user[1])
     
     return Token(access_token=user.token, token_type='bearer')
     

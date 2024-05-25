@@ -30,7 +30,7 @@ class UserLogin(BaseModel):
             try:
                 user = session.query(LBUser).filter_by(email=self.username).first()
                 if not user:
-                    return (404, ERRORS.get(404))     
+                    return (404, f'Não encontrado registro para o email {self.username}')     
                 success_login = UserLogin.dencript_pass(self.password, user.password)
                 if success_login:
                     token = UserLogin.create_access_token(user={"email" : user.email})
