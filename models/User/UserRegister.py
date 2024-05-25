@@ -11,7 +11,7 @@ class UserRegisterResponse(BaseModel):
 
 class UserRegister(BaseModel):
     name: str = Field(min_length=5, max_length=20)
-    email: str = Field(pattern='^[a-zA-Z0-9]+@[a-zA-Z0-9]+')
+    email: str = Field(..., pattern=r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
     password: str = Field(min_length=5, max_length=20)
     
     @staticmethod
