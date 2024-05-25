@@ -11,3 +11,4 @@
 /models/User/__pycache__
 /models/Scraping/__pycache__
 /utils/__pycache__
+/database.db
