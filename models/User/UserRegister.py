@@ -2,8 +2,7 @@ from models.User.User import LBUser
 from models.User.ERRORS import ERRORS
 from pydantic import BaseModel, Field
 from passlib.context import CryptContext
-from ..SQLAlchemy import SQLAlchemyManager
-from sqlalchemy.exc import IntegrityError
+from models.SQLAlchemy import SQLAlchemyManager
 
 class UserRegisterResponse(BaseModel):
     name: str
@@ -11,7 +10,7 @@ class UserRegisterResponse(BaseModel):
 
 class UserRegister(BaseModel):
     name: str = Field(min_length=5, max_length=20)
-    email: str = Field(..., pattern=r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
+    email: str = Field(pattern=r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', max_length=25)
     password: str = Field(min_length=5, max_length=20)
     
     @staticmethod
