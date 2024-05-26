@@ -54,7 +54,7 @@ async def get_processing(processing: ProcessingRequest = Depends(), token: str =
     return {"detail": results}
 
 
-@app.get('/commercialization', status_code=200, responses=docs_commercialization)
+@app.get('/commercialization/', status_code=200, responses=docs_commercialization)
 async def get_commercialization(commercialization: ComercializationRequest = Depends(), token: str = Depends(verify_token)):    
     need_scraping = commercialization.verify_need_scraping()
     if need_scraping:
@@ -62,8 +62,8 @@ async def get_commercialization(commercialization: ComercializationRequest = Dep
     results = commercialization.load()
     return {"detail": results}
 
-@app.get('/importation', status_code=200, responses=docs_importation)
-async def get_importation(importation: ImportationRequest, token: str = Depends(verify_token)):
+@app.get('/importation/', status_code=200, responses=docs_importation)
+async def get_importation(importation: ImportationRequest = Depends(), token: str = Depends(verify_token)):
     need_scraping = importation.verify_need_scraping()
     if need_scraping:
         importation.scraping()
