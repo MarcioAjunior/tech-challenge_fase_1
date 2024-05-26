@@ -7,6 +7,7 @@ from models.SQLAlchemy import SQLAlchemyManager
 from models.Processing.Processing import LBProcessing
 from bs4 import BeautifulSoup
 from helpers.parse_float import parse_float
+from models.Processing.ProcessingEnum import EnumClassification
 
 URLS = {
         "processamento" : {
@@ -19,14 +20,6 @@ URLS = {
                 }
             }
     }
-
-
-class EnumClassification(str, Enum):
-    viniferas = "Viníferas"
-    americanas_e_hibridas = "Americanas e híbridas"
-    uvas_de_mesa = "Uvas de mesa"
-    sem_classificacao = "Sem classificação"
-
 
 class ProcessingRequest(Scraping):
     year: int = Field(ge=1970, le=2022)

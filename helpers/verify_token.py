@@ -27,7 +27,7 @@ async def custom_401(request: Request, exc: HTTPException):
     if exc.status_code == status.HTTP_401_UNAUTHORIZED:
         return JSONResponse(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            content={"detail": "Usuario não autenticadosss"}
+            content={"detail": "Usuario não autenticado"}
         )
     return JSONResponse(
         status_code=exc.status_code,

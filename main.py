@@ -6,7 +6,8 @@ from typing import Annotated
 from models import (
     UserRegister, UserRegisterResponse, UserLogin, UserLoginResponse,
     ProductionRequest, ProcessingRequest, ComercializationRequest,
-    ImportationRequest, ExportationRequest, ProductionParams, Token
+    ImportationRequest, ExportationRequest,Token, ProductionParams,
+    ProcessingParams 
 )
 from models.docs import (
     docs_register, docs_login, docs_production,
@@ -47,7 +48,10 @@ async def get_production(params: ProductionParams = Depends(), token: str = Depe
     return {"detail": results}
 
 @app.get('/processing', status_code=200, responses=docs_processing)
-async def get_processing(processing: ProcessingRequest, token: str = Depends(verify_token)):
+async def get_processing(params: ProcessingParams = Depends(), token: str = Depends(verify_token)):
+    
+    processing = ProcessingRequest(year=params.year, classification=params.classification)
+    
     need_scraping = processing.verify_need_scraping()
     if need_scraping:
         processing.scraping()

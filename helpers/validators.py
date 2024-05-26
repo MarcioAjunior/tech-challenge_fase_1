@@ -30,7 +30,7 @@ async def validations(request: Request, exc: RequestValidationError):
         elif error["type"] == 'enum':
             expected = error.get('ctx').get('expected')
             custom_errors.append({
-                    "error" : 'O campo classification espera um valoe entre %s' % expected     
+                    "error" : 'O campo classification espera um valor entre %s' % expected     
                 })
         elif error["type"] in custom_error:
             custom_errors.append({
