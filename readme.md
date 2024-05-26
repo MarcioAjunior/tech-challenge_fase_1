@@ -100,7 +100,7 @@ Rota que retornar as exportações refernte ao ano informado, manteando também 
 
 A arquitetura imaginada para o deploy de api foi imaginado conforme modelo c4 abaixo.
 
-![Descrição da Imagem](DEER.png)
+![Descrição da Imagem](arquitetura.png)
 
 A arquitetura é baseada em microserviços, e compõem inicialente de 5 containers, sendo eles:
 
