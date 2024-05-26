@@ -35,6 +35,10 @@ Este é um projeto desenvolvido como parte do desafio da pós-graduação, refer
    ```sh
    pip install -r requirements.txt
 
+5. Inicie e aplicação:
+   ```sh
+   fastapi dev main.py
+
 ### Windows
 
 1. Clone o repositório:
@@ -53,6 +57,10 @@ Este é um projeto desenvolvido como parte do desafio da pós-graduação, refer
 4. Instale as dependencias:
    ```sh
    pip install -r requirements.txt
+
+5. Inicie e aplicação:
+   ```sh
+   fastapi dev main.py
 
 ## Sobre esse projeto
 
