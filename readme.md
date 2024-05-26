@@ -95,3 +95,5 @@ Rota que retorna as importações referente ao ano informado como parâmetro, ca
 ### /exportation
 
 Rota que retornar as exportações refernte ao ano informado, manteando também o parâmetro opcional de classficação, filtriando por ele quando informado.
+
+![Descrição da Imagem](Arquitetura.png)
