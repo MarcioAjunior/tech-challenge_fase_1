@@ -17,8 +17,8 @@ def verify_token(token: str = Depends(oauth2_scheme)):
     )
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        email: str = payload.get("email")
-        if email is None:
+        username: str = payload.get("username")
+        if username is None:
             raise credentials_exception
     except PyJWTError:
         raise credentials_exception
@@ -27,7 +27,7 @@ async def custom_401(request: Request, exc: HTTPException):
     if exc.status_code == status.HTTP_401_UNAUTHORIZED:
         return JSONResponse(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            content={"detail": "Usuario não autenticado"}
+            content={"detail": "Usuario não autenticadosss"}
         )
     return JSONResponse(
         status_code=exc.status_code,
