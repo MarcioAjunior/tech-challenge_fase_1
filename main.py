@@ -70,8 +70,8 @@ async def get_importation(importation: ImportationRequest = Depends(), token: st
     results = importation.load()
     return {"detail": results}
 
-@app.get('/exportation', status_code=200, responses=docs_exportation)
-async def get_exportation(exportation: ExportationRequest, token: str = Depends(verify_token)):
+@app.get('/exportation/', status_code=200, responses=docs_exportation)
+async def get_exportation(exportation: ExportationRequest = Depends(), token: str = Depends(verify_token)):
     need_scraping = exportation.verify_need_scraping()
     if need_scraping:
         exportation.scraping()
