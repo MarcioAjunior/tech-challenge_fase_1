@@ -59,7 +59,7 @@ Este é um projeto desenvolvido como parte do desafio da pós-graduação, refer
 É uma API simples que realiza um scraping no site da emprapa. A api possúi 5 endpoints get simples com os dados capturados, além das duas rotas para criação e autenticação de um usuário. Após a captura dos dados as informações são salvas em um banco de dados SQLite. Esse banco relacional segue as regras definidas pelo Diagrama de Entidade e Relacionamento abaixo:
 
 
-![Descrição da Imagem](DEER.png)
+![Diagrma de entidade e relacionamento](DEER.png)
 
 
 Sobre as rotas:
@@ -100,7 +100,7 @@ Rota que retornar as exportações refernte ao ano informado, manteando também 
 
 A arquitetura imaginada para o deploy de api foi imaginado conforme modelo c4 abaixo.
 
-![Descrição da Imagem](Arquitetura.png)
+![Arquitetura da aplicação](Arquitetura.png)
 
 A arquitetura é baseada em microserviços, e compõem inicialente de 5 containers, sendo eles:
 
@@ -114,14 +114,14 @@ A API recebe as requisições redirecionadas pelo proxy, recebendo as informaç�
 
 os detalhes de possíveis resposta da api podem ser visualizados em _/docs_.
 
-### Master DB.
+### 3 Master DB.
 
 O Master DB é o primeiro banco de dados da aplicação, utilizada pela api para escrita dos resultados da consulta do site da EMBRAPA, e utilizado pela api para consultar por resultados já buscados anteriormente. Este banco de dados é utilizado somente pela API.
 
-### Slave DB.
+### 4 Slave DB.
 
 O slave DB opera justamente como um banco slave, tendo o Master DB como banco princapal, master. É um banco de dados réplica utilizado somente pelo modelo ML para realização de calculos correlação precisão além de predição e análise descritiva dos dados já coletados. 
 
-### Modelo ML.
+### 5 Modelo ML.
 
 O container do modelo irá apenas expor os resultados do modelo, que irá realizar predições e análises descritivas realizadas. O modeo também irá operar atrás do proxy, recebendo as requisições que lhe forem redirecionadas. Para receber as requisições o artefado do modelora irá utilizar-se de uma api no container. que irá intermediar a comunicação entre os containers do banco slave e proxy.
