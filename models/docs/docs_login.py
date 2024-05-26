@@ -4,15 +4,19 @@ docs_login = {
         "content": {"application/json": {"example": {"name": "Nome", "email": "name@example", "token": "hashedToken"}}}
         },
     404: {
-        "description": "Email ou senha incorretos",
-        "content": {"application/json": {"example": {"detail": "Email ou senha incorretos"}}}
+        "description": "Error: Not Found",
+        "content": {"application/json": {"example": {"detail": "Não encontrado uma conta para o usuário : samename"}}}
+        },
+    404: {
+        "description": "Error: Not Found",
+        "content": {"application/json": {"example": {"detail": "Username ou senha incorretos !"}}}
         },
     422: {
-        "description": "Erro de validação dos campos",
-        "content": {"application/json": {"example": {"detail": [{"detail" : "Campo email é obrigatório"}] }}}
+        "description": "Unprocessable Entity",
+        "content": {"application/json": {"example": {"detail": [{"detail" : "O campo senha é obrigatório"}] }}}  
         },
     500: {
-        "description": "Erro interno",
+        "description": "Internal Error",
         "content": {"application/json": {"example": {"detail": "Erro interno"}}}
         },
 }
