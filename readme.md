@@ -19,8 +19,9 @@ Este é um projeto desenvolvido como parte do desafio da pós-graduação, refer
 
 1. Clone o repositório:
    ```sh
-   git clone 
-   cd repo
+   git clone git@github.com:MarcioAjunior/tech-challenge_fase_1.git
+   cd  tech-challenge_fase_1
+
 
 2. Crie um ambiente virtual:
    ```sh
@@ -38,8 +39,8 @@ Este é um projeto desenvolvido como parte do desafio da pós-graduação, refer
 
 1. Clone o repositório:
    ```sh
-   git clone 
-   cd repo
+   git clone git@github.com:MarcioAjunior/tech-challenge_fase_1.git
+   cd  tech-challenge_fase_1
 
 2. Crie um ambiente virtual:
    ```sh
