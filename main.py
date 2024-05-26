@@ -6,8 +6,7 @@ from typing import Annotated
 from models import (
     UserRegister, UserRegisterResponse, UserLogin, UserLoginResponse,
     ProductionRequest, ProcessingRequest, ComercializationRequest,
-    ImportationRequest, ExportationRequest,Token, ProductionParams,
-    ProcessingParams 
+    ImportationRequest, ExportationRequest,Token
 )
 from models.docs import (
     docs_register, docs_login, docs_production,
@@ -39,19 +38,15 @@ async def login_user(form_data: Annotated[OAuth2PasswordRequestForm, Depends()])
     return Token(access_token=user.token, token_type='bearer')
     
 @app.get('/production/', responses=docs_production)
-async def get_production(params: ProductionParams = Depends(), token: str = Depends(verify_token)):
-    production = ProductionRequest(year=params.year)
+async def get_production(production: ProductionRequest = Depends(), token: str = Depends(verify_token)):
     need_scraping = production.verify_need_scraping()
     if need_scraping:
         production.scraping()
     results = production.load()
     return {"detail": results}
 
-@app.get('/processing', status_code=200, responses=docs_processing)
-async def get_processing(params: ProcessingParams = Depends(), token: str = Depends(verify_token)):
-    
-    processing = ProcessingRequest(year=params.year, classification=params.classification)
-    
+@app.get('/processing/', status_code=200, responses=docs_processing)
+async def get_processing(processing: ProcessingRequest = Depends(), token: str = Depends(verify_token)):
     need_scraping = processing.verify_need_scraping()
     if need_scraping:
         processing.scraping()
@@ -60,7 +55,7 @@ async def get_processing(params: ProcessingParams = Depends(), token: str = Depe
 
 
 @app.get('/commercialization', status_code=200, responses=docs_commercialization)
-async def get_commercialization(commercialization: ComercializationRequest, token: str = Depends(verify_token)):
+async def get_commercialization(commercialization: ComercializationRequest = Depends(), token: str = Depends(verify_token)):    
     need_scraping = commercialization.verify_need_scraping()
     if need_scraping:
         commercialization.scraping()
