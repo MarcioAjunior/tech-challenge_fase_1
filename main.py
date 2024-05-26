@@ -13,12 +13,13 @@ from models.docs import (
     docs_processing, docs_commercialization,
     docs_importation, docs_exportation
 )
-from helpers import validations, verify_token
+from helpers import validations, verify_token, custom_401
 
 app = FastAPI()
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 app.add_exception_handler(RequestValidationError, validations)
+app.add_exception_handler(HTTPException, custom_401)
 
 @app.post('/register', status_code=201, responses=docs_register)
 async def register_user(user: UserRegister, response: Response):
@@ -52,6 +53,7 @@ async def get_processing(processing: ProcessingRequest, token: str = Depends(ver
         processing.scraping()
     results = processing.load()
     return {"detail": results}
+
 
 @app.get('/commercialization', status_code=200, responses=docs_commercialization)
 async def get_commercialization(commercialization: ComercializationRequest, token: str = Depends(verify_token)):

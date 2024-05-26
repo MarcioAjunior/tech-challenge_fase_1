@@ -7,7 +7,7 @@ from utils.JWT import SECRET_KEY, ALGORITHM
 import jwt
 
 class UserLoginResponse(BaseModel):
-    name : str
+    username : str
     email :str
     token : str
 
@@ -28,14 +28,14 @@ class UserLogin(BaseModel):
     def verify_credentials(self):        
         with SQLAlchemyManager() as session:
             try:
-                user = session.query(LBUser).filter_by(email=self.username).first()
+                user = session.query(LBUser).filter_by(username=self.username).first()
                 if not user:
-                    return (404, f'Não encontrado registro para o email {self.username}')     
+                    return (404, f'Não encontrado uma conta para o usuário : {self.username}')     
                 success_login = UserLogin.dencript_pass(self.password, user.password)
                 if success_login:
-                    token = UserLogin.create_access_token(user={"email" : user.email})
+                    token = UserLogin.create_access_token(user={"username" : user.username})
                     if token is not None:
-                        return UserLoginResponse(name=user.name, email=user.email, token=token) 
+                        return UserLoginResponse(username=user.username, email=user.email, token=token) 
                 return (404, ERRORS.get(404))   
             except Exception as e:
                 print(e)

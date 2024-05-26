@@ -1,7 +1,9 @@
 import jwt
-from fastapi import Depends, HTTPException, status
-from fastapi.security import OAuth2PasswordBearer
 from jwt import PyJWTError
+from fastapi import FastAPI, HTTPException, Request, Depends, status
+from fastapi.security import OAuth2PasswordBearer
+from fastapi.responses import JSONResponse
+
 from utils.JWT import SECRET_KEY, ALGORITHM
 
 
@@ -20,3 +22,14 @@ def verify_token(token: str = Depends(oauth2_scheme)):
             raise credentials_exception
     except PyJWTError:
         raise credentials_exception
+    
+async def custom_401(request: Request, exc: HTTPException):
+    if exc.status_code == status.HTTP_401_UNAUTHORIZED:
+        return JSONResponse(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            content={"detail": "Usuario não autenticado"}
+        )
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={"detail": exc.detail}
+    )

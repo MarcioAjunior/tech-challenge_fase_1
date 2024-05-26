@@ -5,7 +5,7 @@ class LBUser(Base):
     __tablename__ = 'lb_users'
 
     id = Column(Integer, primary_key=True)
-    name = Column(String, nullable=False)
+    username = Column(String, nullable=False, unique=True)
     email = Column(String, nullable=False, unique=True)
     password = Column(String, nullable=False)
     

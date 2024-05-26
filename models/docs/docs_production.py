@@ -12,8 +12,8 @@ docs_production = {
         }]}}}
         },
     401 : {
-        "description": "Não autenticado",
-        "content": {"application/json": {"example": {"detail": [{"detail" : "Não autenticado"}] }}}
+        "description": "Usuario não autenticado",
+        "content": {"application/json": {"example": {"detail": {"detail" : "Usuario não autenticado"} }}}
     },
     422: {
         "description": "Erro de validação dos campos",
