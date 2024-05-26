@@ -96,4 +96,32 @@ Rota que retorna as importações referente ao ano informado como parâmetro, ca
 
 Rota que retornar as exportações refernte ao ano informado, manteando também o parâmetro opcional de classficação, filtriando por ele quando informado.
 
-![Descrição da Imagem](Arquitetura.png)
+## Arquitetura da aplicação
+
+A arquitetura imaginada para o deploy de api foi imaginado conforme modelo c4 abaixo.
+
+![Descrição da Imagem](arquitetura.png)
+
+A arquitetura é baseada em microserviços, e compõem inicialente de 5 containers, sendo eles:
+
+### 1 Proxy reverso.
+
+Um container Ngix operando em proxy reverso, distribuindo as requisições entre as solicitações realizadas para a API e as solicitações realizadas pra o modelo ML. É o ponto de entrada de toda a arquitetura.
+
+### 2 API.
+
+A API recebe as requisições redirecionadas pelo proxy, recebendo as informações da requisição como _year_ e _classification_, usados para filtrar o resultado da requisição inicial, as informações do parâmetros utilizados estão documentadas em /docs. Caso a informação solicitada encontre-se no banco de dados a api apenas consulta e retornar o resultado conforme parâmetro informados, caso as informações solicitadas ainda não existam no banco de dados, a api realiza um processo de scraping no site da embrapa http://vitibrasil.cnpuv.embrapa.br/ para primeiramente salvar as novas informações e posteriormente retornar para a solicitação inicial.
+
+os detalhes de possíveis resposta da api podem ser visualizados em _/docs_.
+
+### Master DB.
+
+O Master DB é o primeiro banco de dados da aplicação, utilizada pela api para escrita dos resultados da consulta do site da EMBRAPA, e utilizado pela api para consultar por resultados já buscados anteriormente. Este banco de dados é utilizado somente pela API.
+
+### Slave DB.
+
+O slave DB opera justamente como um banco slave, tendo o Master DB como banco princapal, master. É um banco de dados réplica utilizado somente pelo modelo ML para realização de calculos correlação precisão além de predição e análise descritiva dos dados já coletados. 
+
+### Modelo ML.
+
+O container do modelo irá apenas expor os resultados do modelo, que irá realizar predições e análises descritivas realizadas. O modeo também irá operar atrás do proxy, recebendo as requisições que lhe forem redirecionadas. Para receber as requisições o artefado do modelora irá utilizar-se de uma api no container. que irá intermediar a comunicação entre os containers do banco slave e proxy.
