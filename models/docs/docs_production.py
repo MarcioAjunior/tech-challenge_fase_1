@@ -15,10 +15,6 @@ docs_production = {
         "description": "Usuario não autenticado",
         "content": {"application/json": {"example": {"detail": {"detail" : "Usuario não autenticado"} }}}
     },
-    422: {
-        "description": "Erro de validação dos campos",
-        "content": {"application/json": {"example": {"detail": [{"detail" : "O campo year precisa ser maior que 1969"}] }}}
-        },
     504: {
         "description": "Destino do scraping não alcançável",
         "content": {"application/json": {"example": {"detail": "Destino do scraping não alcançável"}}}

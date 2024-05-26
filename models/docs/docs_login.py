@@ -11,10 +11,6 @@ docs_login = {
         "description": "Error: Not Found",
         "content": {"application/json": {"example": {"detail": "Username ou senha incorretos !"}}}
         },
-    422: {
-        "description": "Unprocessable Entity",
-        "content": {"application/json": {"example": {"detail": [{"detail" : "O campo senha é obrigatório"}] }}}  
-        },
     500: {
         "description": "Internal Error",
         "content": {"application/json": {"example": {"detail": "Erro interno"}}}
