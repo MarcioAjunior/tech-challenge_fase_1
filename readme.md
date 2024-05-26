@@ -64,7 +64,7 @@ Este é um projeto desenvolvido como parte do desafio da pós-graduação, refer
 
 Sobre as rotas:
 
-A documentação iterativa está disponívem em http://localhost:8000/docs
+A documentação interativa está disponívem em http://localhost:8000/docs
 
 ### /register
 
