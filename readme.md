@@ -64,6 +64,8 @@ Este é um projeto desenvolvido como parte do desafio da pós-graduação, refer
 
 Sobre as rotas:
 
+A documentação iterativa está disponívem em http://localhost:8000/docs
+
 ### /register
 
 Rota utilizada para cadastrar um usuário, utilizando as informações de _username_, _email_ e _password_ informadas no corpo da requisição, sendo todos os parâmetros obirgatórios, seguindo também algumas validações como email válido, quantidade de caractéres, e unicidade do username.
