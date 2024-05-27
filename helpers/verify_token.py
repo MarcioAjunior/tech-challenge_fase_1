@@ -1,5 +1,4 @@
 import jwt
-from jwt import PyJWTError
 from fastapi import FastAPI, HTTPException, Request, Depends, status
 from fastapi.security import OAuth2PasswordBearer
 from fastapi.responses import JSONResponse
@@ -20,7 +19,7 @@ def verify_token(token: str = Depends(oauth2_scheme)):
         username: str = payload.get("username")
         if username is None:
             raise credentials_exception
-    except PyJWTError:
+    except jwt.PyJWTError:
         raise credentials_exception
     
 async def custom_401(request: Request, exc: HTTPException):
