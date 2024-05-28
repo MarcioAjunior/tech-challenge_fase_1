@@ -141,9 +141,12 @@ O container do modelo irá apenas expor os resultados do modelo, que irá realiz
 
 ## Deploy
 
-Foi realizado também um deploy da aplicação em uma instância ec2. _http://ec2-54-236-107-22.compute-1.amazonaws.com:8000/docs_ (Obs: a instância pode estar desativa).
-Para faciliar foi criado um usuário que tem acesso as rotas autenticadas, embora seja possível cadastrar um usuario na rota /regiter normalmente.
-usuario: tech_challenge
-senha : tech_challenge
+Foi realizado também um deploy da aplicação em uma instância EC2.
+[_http://ec2-54-236-107-22.compute-1.amazonaws.com:8000/docs_](http://ec2-54-236-107-22.compute-1.amazonaws.com:8000/docs) (Obs: a instância pode estar desativa).
+
+Para facilitar, foi criado um usuário que tem acesso às rotas autenticadas, embora seja possível cadastrar um usuário na rota `/register` normalmente.
+
+> **Usuário**: tech_challenge  
+> **Senha**: tech_challenge
 
 
