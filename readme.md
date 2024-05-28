@@ -141,4 +141,4 @@ O container do modelo irá apenas expor os resultados do modelo, que irá realiz
 
 ## Deploy
 
-Foi realizado também um deploy da aplicação em uma instância ec2. _http://ec2-54-236-107-22.compute-1.amazonaws.com:8000/docs_
+Foi realizado também um deploy da aplicação em uma instância ec2. _http://ec2-54-236-107-22.compute-1.amazonaws.com:8000/docs_ (Obs: a instância pode estar desativa)
