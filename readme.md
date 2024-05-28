@@ -2,7 +2,12 @@
 
 ## Descrição
 
-Este é um projeto desenvolvido como parte do desafio da pós-graduação, referente à atividade da 1ª fase do curso. O projeto é uma API construída com FastAPI e documentada com Swagger. A API realiza um scraping no site da Embrapa (http://vitibrasil.cnpuv.embrapa.br/).
+Este é um projeto desenvolvido como parte do desafio da pós-graduação, referente à atividade tech_challenge da 1ª fase do curso Machine Learning Engineering. O projeto é uma API construída com FastAPI e documentada com Swagger. A API realiza um scraping no site da Embrapa (http://vitibrasil.cnpuv.embrapa.br/). A presente aplicação foi desenvoldida por Marcio Anastacio da Luz Junior RM354541, assim como documentações apresentadas nesse readme.
+
+- [x] Criar uma API que realiza scraping no site da Embrapa.
+- [x] Api documentada com swagger.
+- [x] Desenvolvidas rotas de criação de usuário para autenticação com token JTW.
+- [x] MPV com deploy AWS.
 
 ## Funcionalidades
 
@@ -133,3 +138,7 @@ O slave DB opera justamente como um banco slave, tendo o Master DB como banco pr
 ### 5 Modelo ML.
 
 O container do modelo irá apenas expor os resultados do modelo, que irá realizar predições e análises descritivas realizadas. O modeo também irá operar atrás do proxy, recebendo as requisições que lhe forem redirecionadas. Para receber as requisições o artefado do modelora irá utilizar-se de uma api no container. que irá intermediar a comunicação entre os containers do banco slave e proxy.
+
+## Deploy
+
+Foi realizado também um deploy da aplicação em uma instância ec2. _http://ec2-54-236-107-22.compute-1.amazonaws.com:8000/docs_
